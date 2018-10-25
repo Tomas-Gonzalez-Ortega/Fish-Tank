@@ -1,0 +1,89 @@
+<!DOCTYPE  html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>CPSC 2130</title>
+    <style type="text/css">
+        body {
+            font-family: monospace;
+        }
+        
+        .controls {
+            float: left;
+        }
+        
+        button {
+            font-size: 1.2em;
+            padding: 20px;
+            margin: 20px;
+        }
+        /* theCanvas styles */
+        
+        #theCanvas {
+            border: 1px solid #000000;
+            float: left;
+        }
+        
+        footer {
+            background-color: black;
+            text-align: center;
+            color: aliceblue;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CPSC 2130 - LAB 7</h1>
+    <canvas id="gameCanvas" width="800" height="600"> Your browser does not support canvas. </canvas>
+    <script>
+        var myCanvas = document.getElementById("gameCanvas");
+        var myContext = myCanvas.getContext("2d");
+        var nonClockWise = 0;
+        var fishTank = new Image();
+        fishTank.src = "Images/fishTank.gif";
+        
+        var whiteKoi = new Image();
+        whiteKoi.src = "Images/whiteKoi.gif";
+        whiteKoi.onload = function () {
+            //myContext.drawImage(whiteKoi, fishTank.width/2, fishTank.height/2);
+        }
+        
+        var noirKoi = new Image();
+        noirKoi.src = "Images/noirKoi.gif";
+        noirKoi.onload = function () {
+            //myContext.drawImage(noirKoi, fishTank.width/2, fishTank.height/2);
+        }
+        
+        fishTank.onload = function () {
+            animate();
+        }
+        
+        function animate() {
+            myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+            myContext.drawImage(fishTank, 0, 0); //FISHTANK
+            
+            myContext.save();
+            myContext.translate(fishTank.width/2 + 50, fishTank.height/2 + 50);
+            myContext.rotate(nonClockWise*Math.PI/180);
+            nonClockWise -= 0.2;
+            //noirKoi.transform(0,0,0,0,0,0);
+            myContext.drawImage(noirKoi, 0, 0); // NOIR KOI
+            myContext.restore();
+            
+            
+            myContext.save();
+            myContext.translate(fishTank.width/2 + 50, fishTank.height/2 + 50);
+            myContext.rotate(nonClockWise*Math.PI/180);
+            nonClockWise -= 0.2;
+            //noirKoi.transform(0,0,0,0,0,0);
+            myContext.drawImage(whiteKoi, -190, -190); // WHITE KOI
+            myContext.restore();
+            window.requestAnimationFrame(animate);
+        }
+    </script>
+    <footer>CPSC 2130 Tomas Gonzalez 100266942</footer>
+</body>
+
+</html>

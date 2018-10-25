@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CPSC 2130 Lab 7</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .panel-footer {
+            background-color: #333;
+            color: #dddddd;
+            text-align: center;
+        }
+        
+        #img {
+            margin: auto;
+        }
+        
+        .raindrop {
+            background-image: url(noirKoi.gif);
+            background: center blue;
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            border-top-left-radius: 0;
+            position: absolute;
+            margin: auto;
+            left: 75px;
+            top: 75px;
+            animation: ccircle 5s infinite linear;
+            -webkit-animation: ccircle 5s infinite linear;
+        }
+        
+        .raindrop:hover {
+            animation: none;
+            -webkit-animation: none;
+        }
+        
+        .axis {
+            width: 200px;
+            height: 200px;
+            transform: scaleX(2);
+            background-color: none;
+            border: 1px solid black;
+            left: 50px;
+            position: absolute;
+            top: 50px;
+            border-radius: 50%;
+        }
+        
+        .rotate {
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            animation: circle 5s infinite linear;
+            -webkit-animation: circle 5s infinite linear;
+            transform-origin: 50% 50%;
+            -webkit-transform-origin: 50% 50%;
+            position: absolute;
+        }
+        
+        .counterrotate {
+            width: 50px;
+            height: 50px;
+            animation: ccircle 5s infinite linear;
+            -webkit-animation: ccircle 5s infinite linear;
+        }
+        
+        .planet {
+            background-image: url(whiteKoi.gif);
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            border-radius: 50px;
+            left: 0px;
+            top: 0px;
+            background-color: red;
+            display: block;
+        }
+        
+        @keyframes circle {
+            from {
+                transform: rotateZ(0deg)
+            }
+            to {
+                transform: rotateZ(360deg)
+            }
+        }
+        
+        @-webkit-keyframes circle {
+            0% {
+                -webkit-transform: rotateZ(0deg)
+            }
+            100% {
+                -webkit-transform: rotateZ(360deg)
+            }
+        }
+        
+        @keyframes ccircle {
+            from {
+                transform: rotateZ(360deg)
+            }
+            to {
+                transform: rotateZ(0deg)
+            }
+        }
+        
+        @-webkit-keyframes ccircle {
+            from {
+                -webkit-transform: rotateZ(360deg)
+            }
+            to {
+                -webkit-transform: rotateZ(0deg)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                        <p class="navbar-text">LAB NUMBER 7</p>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav nav-pills">
+                            <li class="small active"><a data-toggle="pill" href=#intro_display>Introduction</a></li>
+                            <li id="status_display" class="location_not_change small"><a data-toggle="pill" href="#myCanvas">Canvas</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav> <img src="fishTank.gif" id="img" class="img-responsive" alt="banner">
+            <div class="tab-content">
+                <div class=" jumbotron well tab-pane fade in active" id="intro_display">
+                    <p> This is an exercise of Multimedia and Animation class to show up 2 animated Koi fishes on a fish tank </p>
+                    <p> The idea is to use 3 previous designed images (on the laboratory number 3) combined on a html canvas to simulate a fish tank </p>
+                </div>
+                <div class="tab-pane fade jumbotron" id="myCanvas">
+                    <div class="axis">
+                        <div class="rotate">
+                            <div class="raindrop" id="center"></div>
+                            <canvas id="gameCanvas" width="800" height="600"> Your browser does not support canvas. </canvas>
+                            <script>
+                                var myCanvas = document.getElementById("gameCanvas");
+                                var myContext = myCanvas.getContext("2d");
+                                var fishTank = new Image();
+                                fishTank.src = "fishTank.gif";
+                                fishTank.onload = function () {
+                                    myContext.drawImage(fishTank, 0, 0);
+                                }
+                                var whiteKoi = new Image();
+                                whiteKoi.src = "whiteKoi.gif";
+                                whiteKoi.onload = function () {
+                                    myContext.drawImage(whiteKoi, 0, 0);
+                                }
+                                var noirKoi = new Image();
+                                noirKoi.src = "noirKoi.gif";
+                                noirKoi.onload = function () {
+                                    myContext.drawImage(noirKoi, 0, 0);
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <footer>CPSC 2130 Multimedia and Animation - Tomas Gonzalez ID: 100266942 - Langara College 2017</footer>
+    </div>
+</body>
+
+</html>
